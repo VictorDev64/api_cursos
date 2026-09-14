@@ -3,29 +3,34 @@
 Este repositório foi feito para abrigar a atividade prática do professor Fernando, que consiste em fazer
 uma API de cursos completa, evoluindo o mesmo projeto conforme demonstrado nas aulas.
 
+
 ## Fluxo cliente e servidor
 
 Quando um cliente consulta `/GET cursos`, o caminho a seguir é executado:
 
-Cliente -> Requisição HTTP -> Back-end -> Resposta HTTP -> Cliente
+```mermaid
+graph TD
+  A[Cliente] -->|Requisição HTTP| B[Back-end]
+  B -->|Resposta HTTP| A
+```
 
 1. **Cliente faz a requisição:**
-    * O **Cliente** envia uma requisição **HTTP GET** para a rota `/cursos` do servidor.
+    * O **Cliente** envia uma requisição HTTP GET para a rota `/cursos` do servidor.
     * **O que o cliente solicita:** A lista de todos os cursos disponíveis cadastrados no sistema.
 
 2. **Processamento no Back-end:**
-    * O **Servidor (Back-end)** recebe e interpreta a requisição.
+    * O **Servidor** (Back-end) recebe e interpreta a requisição.
     * Valida a rota e o método HTTP (`GET`).
     * Consulta a base de dados para obter as informações dos cursos.
 
 3. **Servidor envia a resposta:**
-    * O **Servidor** constrói uma **resposta HTTP** contendo:
+    * O Servidor constrói uma resposta HTTP contendo:
         * **Código de Status HTTP:** `200 OK` (indicando sucesso).
         * **Corpo da Resposta (Payload):** Uma estrutura de dados (geralmente em formato JSON) contendo os dados dos cursos.
     * **O que o servidor devolve:** Uma coleção de objetos "curso" (ex.: id, título, descrição, carga horária).
 
 4. **Cliente recebe a resposta:**
-    * O **Cliente** recebe a resposta HTTP, processa o JSON retornado e exibe as informações dos cursos na interface para o usuário final.
+    * O Cliente recebe a resposta HTTP, processa o JSON retornado e exibe as informações dos cursos na interface para o usuário final.
 
 ## Responsabilidades do back-end
 
@@ -50,3 +55,15 @@ Esta seção especifica o contrato da API para o gerenciamento de cursos. Qualqu
 | **Buscar curso por ID** | `GET` | `/cursos/{id}` | Retorna os detalhes de um curso específico | `200 OK` |
 | **Atualizar curso** | `PUT` | `/cursos/{id}` | Atualiza todos os dados de um curso existente | `200 OK` |
 | **Excluir curso** | `DELETE` | `/cursos/{id}` | Remove um curso do sistema | `204 No Content` |
+
+# Estrutura e configuração do projeto
+
+### Mapeamento da Estrutura
+
+| Item | Localização no Projeto | Função Principal |
+| :--- | :--- | :--- |
+| **`pom.xml`** | `/pom.xml` *(Raiz do projeto)* | Gerencia as dependências, configurações do Maven, plugins de build e versão do Java. |
+| **`src/main/java`** | `src/main/java` | Armazena todo o código-fonte Java da aplicação (Controllers, Services, Entities, DTOs). |
+| **`src/main/resources`** | `src/main/resources` | Guarda recursos não-executáveis (configurações, scripts SQL e arquivos estáticos). |
+| **Classe `@SpringBootApplication`** | `src/main/java/[pacote]/[Nome]Application.java` | Inicializa a aplicação Spring Boot e seu servidor web embutido. |
+| **`application.properties`** | `src/main/resources/application.properties` | Define parâmetros de execução da aplicação (banco de dados, porta do servidor, logs). |
