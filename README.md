@@ -7,25 +7,29 @@ uma API de cursos completa, evoluindo o mesmo projeto conforme demonstrado nas a
 
 Quando um cliente consulta `/GET cursos`, o caminho a seguir é executado:
 
-Cliente -> Requisição HTTP -> Back-end -> Resposta HTTP -> Cliente
+```mermaid
+graph TD
+   A[Cliente] -->|Requisição HTTP| B[Back-end]
+   B -->|Resposta HTTP| A
+```
 
 1. **Cliente faz a requisição:**
-    * O **Cliente** envia uma requisição **HTTP GET** para a rota `/cursos` do servidor.
-    * **O que o cliente solicita:** A lista de todos os cursos disponíveis cadastrados no sistema.
+   * O **Cliente** envia uma requisição HTTP GET para a rota `/cursos` do servidor.
+   * **O que o cliente solicita:** A lista de todos os cursos disponíveis cadastrados no sistema.
 
 2. **Processamento no Back-end:**
-    * O **Servidor (Back-end)** recebe e interpreta a requisição.
-    * Valida a rota e o método HTTP (`GET`).
-    * Consulta a base de dados para obter as informações dos cursos.
+   * O **Servidor** (Back-end) recebe e interpreta a requisição.
+   * Valida a rota e o método HTTP (`GET`).
+   * Consulta a base de dados para obter as informações dos cursos.
 
 3. **Servidor envia a resposta:**
-    * O **Servidor** constrói uma **resposta HTTP** contendo:
-        * **Código de Status HTTP:** `200 OK` (indicando sucesso).
-        * **Corpo da Resposta (Payload):** Uma estrutura de dados (geralmente em formato JSON) contendo os dados dos cursos.
-    * **O que o servidor devolve:** Uma coleção de objetos "curso" (ex.: id, título, descrição, carga horária).
+   * O Servidor constrói uma resposta HTTP contendo:
+      * **Código de Status HTTP:** `200 OK` (indicando sucesso).
+      * **Corpo da Resposta (Payload):** Uma estrutura de dados (geralmente em formato JSON) contendo os dados dos cursos.
+   * **O que o servidor devolve:** Uma coleção de objetos "curso" (ex.: id, título, descrição, carga horária).
 
 4. **Cliente recebe a resposta:**
-    * O **Cliente** recebe a resposta HTTP, processa o JSON retornado e exibe as informações dos cursos na interface para o usuário final.
+   * O Cliente recebe a resposta HTTP, processa o JSON retornado e exibe as informações dos cursos na interface para o usuário final.
 
 ## Responsabilidades do back-end
 
